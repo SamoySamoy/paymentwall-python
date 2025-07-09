@@ -15,9 +15,8 @@ To install using <code>pip</code> run:
 
   <code>pip install paymentwall-python</code>
 
-<b>Notice:</b> If you are using <em>Python 2.6</em> please run the following command, too:
+<b>Notice:</b> Requires Python 3
 
-  <code>pip install ordereddict</code>
 
 To install from source run:
 
