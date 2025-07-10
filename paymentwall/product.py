@@ -63,7 +63,7 @@ class Product:
         self.recurring = recurring
         self.trial_product = (
             trial_product
-            if self.TYPE_SUBSCRIPTION and recurring
+            if product_type == self.TYPE_SUBSCRIPTION and recurring
             else None
         )
 
