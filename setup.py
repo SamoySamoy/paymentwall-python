@@ -16,5 +16,5 @@ setup(
     license='MIT',
     author='Paymentwall Team',
     author_email='devsupport@paymentwall.com',
-    python_requires=">=3.8",
+    python_requires=">=3.6",
 )
