@@ -24,7 +24,7 @@ class Product:
         period_length: int = 0,
         period_type: Optional[str] = None,
         recurring: bool = False,
-        trial_product: object = None
+        trial_product: object = None,
     ) -> None:
         """
         Initialize a Product instance.

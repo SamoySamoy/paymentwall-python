@@ -20,7 +20,7 @@ To install using <code>pip</code> run:
 
 To install from source run:
 
-  <code>python setup.py install</code>
+  <code>pip install -e .</code>
 
 Then use a code sample below.
 
@@ -63,7 +63,7 @@ print(widget.get_html_code())
 #### Pingback Processing
 
 The Pingback is a webhook notifying about a payment being made. Pingbacks are sent via HTTP/HTTPS to your servers. To process pingbacks use the following code:
-<pre><code>pingback = Pingback({x:y for x, y in request.args.iteritems()}, request.remote_addr)
+<pre><code>pingback = Pingback({x:y for x, y in request.args.items()}, request.remote_addr)
 
 if pingback.validate():
     product_id = pingback.get_product().get_id()
@@ -91,7 +91,7 @@ Paymentwall.set_secret_key('SECRET_KEY')
 #### Widget Call
 <pre><code>widget = Widget(
 	'user40012', # id of the end-user who's making the payment
-	'p1_1',      # widget code, e.g. p1; can be picked inside of your merchant account
+	'pw_1',      # widget code, can be picked inside of your merchant account
 	[],          # array of products - leave blank for Virtual Currency API
 	{'email': 'user@hostname.com'} # additional parameters
 )
@@ -99,7 +99,7 @@ print(widget.get_html_code())
 </code></pre>
 
 #### Pingback Processing
-<pre><code>pingback = Pingback({x:y for x, y in request.args.iteritems()}, request.remote_addr)
+<pre><code>pingback = Pingback({x:y for x, y in request.args.items()}, request.remote_addr)
 if pingback.validate():
     virtual_currency = pingback.get_vc_amount()
     if pingback.is_deliverable():
@@ -125,7 +125,7 @@ Paymentwall.set_secret_key('SECRET_KEY')
 #### Widget Call
 <pre><code>widget = Widget(
 	'user40012', # id of the end-user who's making the payment
-	'p1_1',      # widget code, e.g. p1; can be picked inside of your merchant account
+	'pw_1',      # widget code, can be picked inside of your merchant account
 	[
 		Product('product301', 3.33, 'EUR'), # first product in cart
 		Product('product607', 7.77, 'EUR')  # second product in cart
@@ -135,7 +135,7 @@ Paymentwall.set_secret_key('SECRET_KEY')
 print(widget.get_html_code())</code></pre>
 
 #### Pingback Processing
-<pre><code>pingback = Pingback({x:y for x, y in request.args.iteritems()}, request.remote_addr)
+<pre><code>pingback = Pingback({x:y for x, y in request.args.items()}, request.remote_addr)
 if pingback.validate():
     products = pingback.get_products()
     if pingback.is_deliverable():
