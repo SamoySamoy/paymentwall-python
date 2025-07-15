@@ -41,14 +41,11 @@ Paymentwall.set_secret_key('SECRET_KEY') # available in your merchant area
 The widget is a payment page hosted by Paymentwall that embeds the entire payment flow: selecting the payment method, completing the billing details, and providing customer support via the Help section. You can redirect the users to this page or embed it via iframe. Below is an example that renders an iframe with Paymentwall Widget.
 
 <pre><code>product = Product(
-    'product301',              # id of the product in your system 
-    12.12,                     # price
-    'USD',                     # currency code
-    'test',                    # product name
-    Product.TYPE_SUBSCRIPTION, # this is a time-based product
-    1,                         # duration is 1 week
-    Product.PERIOD_TYPE_WEEK,  # 
-    True                       # recurring
+    'product301', # ag_external_id
+    12.12, # amount
+    'USD', # currencyCode
+    'test', # ag_name
+    Product.TYPE_FIXED # ag_type
 )
 
 widget = Widget(
