@@ -267,6 +267,9 @@ class Pingback(Paymentwall):
             else:
                 base_string += f"{key}={value}"
         base_string += secret
-        return self.hash(
-            base_string, "sha256" if version == self.SIGNATURE_VERSION_3 else "md5"
+        
+        return (
+            self.hash(base_string, 'sha256')
+            if int(version) == self.SIGNATURE_VERSION_3
+            else self.hash(base_string, 'md5')
         )

@@ -192,7 +192,7 @@ class Widget(Paymentwall):
         if secret is None:
             raise ValueError("Secret key cannot be None")
         base_string = ""
-        if version == self.SIGNATURE_VERSION_1:
+        if int(version) == self.SIGNATURE_VERSION_1:
             base_string = params.get("uid", "") + secret
             return self.hash(base_string, "md5")
         else:
@@ -204,6 +204,8 @@ class Widget(Paymentwall):
                 else:
                     base_string += f"{key}={value}"
             base_string += secret
-            return self.hash(
-                base_string, "md5" if version == self.SIGNATURE_VERSION_2 else "sha256"
-            )
+            
+            if int(version) == self.SIGNATURE_VERSION_2:
+                return self.hash(base_string, 'md5')
+
+            return self.hash(base_string, 'sha256')
