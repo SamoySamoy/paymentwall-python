@@ -2,7 +2,7 @@ Paymentwall_ is the leading digital payments platform for globally monetizing di
 
 To sign up for a Paymentwall Merchant Account, `click here`_.
 
-This library allows developers to use `Paymentwall APIs`_ (Virtual Currency, Digital Goods featuring recurring billing, and Virtual Cart).
+This library allows developers to use `Paymentwall APIs`_ (Checkout, Virtual Currency, Digital Goods featuring recurring billing, and Virtual Cart).
 
 More instructions and code samples are available on `Paymentwall GitHub page`_.
 
