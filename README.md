@@ -30,7 +30,7 @@ Then use a code sample below.
 
 #### Initializing Paymentwall
 <pre><code>from paymentwall import *
-Paymentwall.set_api_type(Paymentwall.API_CHECKOUT)
+Paymentwall.set_api_type(Paymentwall.API_GOODS)
 Paymentwall.set_app_key('APPLICATION_KEY') # available in your merchant area
 Paymentwall.set_secret_key('SECRET_KEY') # available in your merchant area
 </code></pre>

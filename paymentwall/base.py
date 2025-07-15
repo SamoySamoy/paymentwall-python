@@ -12,7 +12,6 @@ class Paymentwall:
     API_VC: ClassVar[int] = 1
     API_GOODS: ClassVar[int] = 2
     API_CART: ClassVar[int] = 3
-    API_CHECKOUT: ClassVar[int] = 4
 
     VC_CONTROLLER: ClassVar[str] = "ps"
     GOODS_CONTROLLER: ClassVar[str] = "subscription"
@@ -30,7 +29,7 @@ class Paymentwall:
 
     @classmethod
     def set_api_type(cls, api_type: int) -> None:
-        """Set the API type (Checkout, Virtual Currency, Digital Goods, or Cart)."""
+        """Set the API type (Virtual Currency, Digital Goods, or Cart)."""
         cls.api_type = api_type
 
     @classmethod

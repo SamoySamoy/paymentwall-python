@@ -76,7 +76,7 @@ class Pingback(Paymentwall):
 
         if self.get_api_type() == self.API_VC:
             signature_params = ["uid", "currency", "type", "ref"]
-        elif self.get_api_type() == self.API_GOODS or self.get_api_type() == self.API_CHECKOUT:
+        elif self.get_api_type() == self.API_GOODS:
             signature_params = ["uid", "goodsid", "slength", "speriod", "type", "ref"]
         else:
             signature_params = ["uid", "goodsid", "type", "ref"]

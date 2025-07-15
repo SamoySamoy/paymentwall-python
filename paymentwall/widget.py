@@ -57,7 +57,7 @@ class Widget(Paymentwall):
             "widget": self.widget_code,
         }
 
-        if self.get_api_type() == self.API_CHECKOUT:
+        if self.get_api_type() == self.API_GOODS:
             if len(self.products) == 1:
                 product = self.products[0]
                 if not isinstance(product, Product):
@@ -98,16 +98,15 @@ class Widget(Paymentwall):
                         params["post_trial_currencyCode"] = (
                             post_trial_product.get_currency_code() or ""
                         )
+            elif len(self.products) == 0:    
+                params["amount"] = product.get_amount()
+                params["currencyCode"] = product.get_currency_code() or ""
+                params["ag_name"] = product.get_name() or ""
+                params["ag_external_id"] = product.get_id() or ""
+                params["ag_type"] = product.get_type()      
             else:
-                self.append_to_errors("Only 1 product is allowed for API_GOODS")
+                self.append_to_errors("Only 1 product is allowed for API_GOODS or 0 product for API CHECKOUT")
         
-        elif self.get_api_type() == self.API_GOODS:
-            params["amount"] = product.get_amount()
-            params["currencyCode"] = product.get_currency_code() or ""
-            params["ag_name"] = product.get_name() or ""
-            params["ag_external_id"] = product.get_id() or ""
-            params["ag_type"] = product.get_type()
-
         elif self.get_api_type() == self.API_CART:
             for index, product in enumerate(self.products):
                 params[f"external_ids[{index}]"] = product.get_id() or ""
@@ -171,7 +170,7 @@ class Widget(Paymentwall):
         if self.get_api_type() == self.API_VC:
             if not re.search(pattern, widget):
                 return self.VC_CONTROLLER
-        elif self.get_api_type() == self.API_GOODS or self.get_api_type() == self.API_CHECKOUT:
+        elif self.get_api_type() == self.API_GOODS:
             if not flexible_call and not re.search(pattern, widget):
                 return self.GOODS_CONTROLLER
         return self.CART_CONTROLLER
