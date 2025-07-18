@@ -101,7 +101,7 @@ class Widget(Paymentwall):
             else:
                 if len(self.products) > 1:
                     self.append_to_errors(
-                        "Only 1 product is allowed for API_GOODS or 0 product for API CHECKOUT"
+                        "Only 0 product is allowed for API_GOODS or 1 product for API CHECKOUT"
                     )
 
         elif self.get_api_type() == self.API_CART:
