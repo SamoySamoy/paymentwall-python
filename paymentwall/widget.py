@@ -98,15 +98,12 @@ class Widget(Paymentwall):
                         params["post_trial_currencyCode"] = (
                             post_trial_product.get_currency_code() or ""
                         )
-            elif len(self.products) == 0:    
-                params["amount"] = product.get_amount()
-                params["currencyCode"] = product.get_currency_code() or ""
-                params["ag_name"] = product.get_name() or ""
-                params["ag_external_id"] = product.get_id() or ""
-                params["ag_type"] = product.get_type()      
             else:
-                self.append_to_errors("Only 1 product is allowed for API_GOODS or 0 product for API CHECKOUT")
-        
+                if len(self.products) > 1:
+                    self.append_to_errors(
+                        "Only 1 product is allowed for API_GOODS or 0 product for API CHECKOUT"
+                    )
+
         elif self.get_api_type() == self.API_CART:
             for index, product in enumerate(self.products):
                 params[f"external_ids[{index}]"] = product.get_id() or ""
@@ -174,7 +171,7 @@ class Widget(Paymentwall):
             if not flexible_call and not re.search(pattern, widget):
                 return self.GOODS_CONTROLLER
         return self.CART_CONTROLLER
-    
+
     @classmethod
     def calculate_signature(
         self, params: Dict[str, Any], secret: Optional[str], version: int
@@ -208,8 +205,8 @@ class Widget(Paymentwall):
                 else:
                     base_string += f"{key}={value}"
             base_string += secret
-            
-            if int(version) == self.SIGNATURE_VERSION_2:
-                return self.hash(base_string, 'md5')
 
-            return self.hash(base_string, 'sha256')
+            if int(version) == self.SIGNATURE_VERSION_2:
+                return self.hash(base_string, "md5")
+
+            return self.hash(base_string, "sha256")
